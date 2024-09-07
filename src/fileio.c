@@ -9,7 +9,7 @@ bool toggle_rom_write_protect(void)
                                            : /* output */ "=a"(status)
                                            : /* no input */
                                            : /* clobbers */ "v");
-    bool write_protected = status & (1 << 2);
+    bool write_protected = status & (unsigned char)(1 << 2);
     return write_protected;
 }
 
@@ -68,4 +68,17 @@ unsigned char chdirroot(void)
                                            : /* input */ "x"(drive_number)
                                            : /* clobbers */ "v");
     return error;
+}
+
+void gethyppoversion(struct hyppo_version* version)
+{
+    __attribute__((leaf)) __asm__ volatile(
+        "lda #$00  \n"
+        "sta $d640 \n" // outputs to q = a,x,y,z
+        "clv       \n"
+        "stq (%0)  \n"
+        "ldz #0    \n"
+        : /* output */ "=r"(version)
+        : /* no input */
+        : /* clobbers */ "v", "a", "x", "y");
 }
