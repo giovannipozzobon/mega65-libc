@@ -107,9 +107,6 @@ struct hyppo_version {
  * @brief Get the version of the hypervisor
  * @param version Pointer to a `struct hyppo_version` to fill
  */
-#ifdef __clang__
-__attribute__((leaf))
-#endif
 void gethyppoversion(struct hyppo_version* version);
 
 #ifdef __cplusplus

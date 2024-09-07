@@ -34,18 +34,17 @@ int main(void)
     mega65_io_enable();
 
     // Get hypervisor version
-    debug_msg("TEST: hyppoversion()");
     gethyppoversion(&version);
     assert_eq(version.hyppo_major >= 1, 1);
     assert_eq(version.hyppo_minor >= 2, 1);
     assert_eq(version.hdos_major >= 1, 1);
     assert_eq(version.hdos_minor >= 2, 1);
 
-    debug_msg("TEST: toggle_rom_write_protect()");
+#ifdef __clang__
+    // Test toggle_rom_write_protect()
     assert_eq(toggle_rom_write_protect(), 0);
     assert_eq(toggle_rom_write_protect(), 1);
 
-#ifdef __clang__
     // Get current drive number
     debug_msg("TEST: get_current_drive()");
     assert_eq(get_current_drive(), 0);

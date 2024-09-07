@@ -125,10 +125,3 @@ chdir_ok:
 	hyppo HYPPO_OPENFILE; outputs to A
 	rts
 
-.global gethyppoversion
-.section .text.fileio_gethyppoversion,"ax",@progbits
-gethyppoversion:
-    hyppo HYPPO_GETVERSION ; outputs to Q = A, X, Y, Z
-    stq (__rc2)            ; store Q to __rc2 pointer
-    ldz #0                 ; Z must be cleared before returning
-    rts

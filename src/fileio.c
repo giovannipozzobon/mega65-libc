@@ -73,12 +73,12 @@ unsigned char chdirroot(void)
 void gethyppoversion(struct hyppo_version* version)
 {
     __attribute__((leaf)) __asm__ volatile(
-        "lda #$00  \n"
+        "lda #$00  \n" // hyppo_getversion
         "sta $d640 \n" // outputs to q = a,x,y,z
         "clv       \n"
-        "stq (%0)  \n"
+        "stq (%0)  \n" // q -> pointer
         "ldz #0    \n"
-        : /* output */ "=r"(version)
-        : /* no input */
-        : /* clobbers */ "v", "a", "x", "y");
+        : /* no output */
+        : /* input */ "r"(version)
+        : /* clobbers */ "a", "x", "y", "v");
 }

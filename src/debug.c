@@ -7,7 +7,7 @@ unsigned char the_char;
 
 void debug_msg(char* msg)
 {
-    while (*msg) {
+    while (msg != NULL && *msg != 0) {
 #ifdef __CC65__
         the_char = *msg;
         __asm__("LDA %v", the_char);
