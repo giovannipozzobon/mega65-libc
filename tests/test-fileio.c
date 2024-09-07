@@ -41,6 +41,12 @@ int main(void)
     assert_eq(version.hdos_major >= 1, 1);
     assert_eq(version.hdos_minor >= 2, 1);
 
+#ifdef __clang__
+    // Get current drive number
+    debug_msg("TEST: get_current_drive()");
+    assert_eq(get_current_drive(), 0);
+#endif
+
     // Good practice
     closeall();
     error = chdirroot();

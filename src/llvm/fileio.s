@@ -46,18 +46,6 @@ setname_0100:
 setname_ok:
 	rts
 	
-.global closeall
-.section .text.fileio_closeall,"ax",@progbits
-closeall:
-	hyppo HYPPO_CLOSEALL
-	rts
-
-.global toggle_rom_write_protect
-.section .text.fileio_toggle_rom_write_protect,"ax",@progbits
-toggle_rom_write_protect:
-	hyppo HYPPO_TOGGLE_ROM_WRITE_PROTECT
-	rts
-
 .global read512
 .section .text.fileio_read512,"ax",@progbits
 read512:
@@ -121,19 +109,6 @@ open:
 	rts
 findfile_ok:
 	hyppo HYPPO_OPENFILE; outputs to A
-	rts
-
-.global close
-.section .text.fileio_close,"ax",@progbits
-close:
-	tax;
-	hyppo HYPPO_CLOSEFILE; input: X
-	rts
-
-.global chdirroot
-.section .text.fileio_chdirroot,"ax",@progbits
-chdirroot:
-	hyppo HYPPO_CDROOTDIR
 	rts
 
 .global chdir	

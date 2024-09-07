@@ -8,6 +8,7 @@ set(objects
     debug.c
     fat32.c
     fcio.c
+    fileio.c
     hal.c
     math.c
     memory.c

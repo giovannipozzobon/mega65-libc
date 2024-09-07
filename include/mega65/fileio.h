@@ -11,32 +11,30 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <stdbool.h>
 
 #ifdef __cplusplus
 // Being compiled by a C++ compiler, inhibit name mangling
 extern "C" {
 #endif
 
-#ifdef __clang__
-__attribute__((leaf))
-#endif
-void toggle_rom_write_protect(void);
-
 /**
- * @brief Closes all open files
+ * @brief Toggles write-protection for `$20000–$3FFFF`
+ * @return True if write protected
  */
 #ifdef __clang__
-__attribute__((leaf))
+bool toggle_rom_write_protect(void);
+#else
+void toggle_rom_write_protect(void);
 #endif
+
+/** Closes all open files */
 void closeall(void);
 
 /**
- * @brief Close a single file
+ * @brief Closes a single file
  * @param fd File descriptor pointing to file to close
  */
-#ifdef __clang__
-__attribute__((leaf))
-#endif
 void close(uint8_t fd);
 
 /**
@@ -78,11 +76,19 @@ chdir(char* filename);
  * @return Error code from `hyppo_selectdrive`. 128 = no such drive.
  * @todo Should probably be deprecated in favor of `cdrootdir()` to better reflect hyppo naming.
  */
+uint8_t chdirroot(void);
+
 #ifdef __clang__
-__attribute__((leaf))
+/** Get current drive number using `hyppo_getcurrentdrive` */
+unsigned char get_current_drive(void);
+
+/**
+ * @brief Sets the currently selected drive (SD card partition)
+ * @return Error code: 128 = no such drive.
+ */
+unsigned char select_drive(unsigned char);
+
 #endif
-uint8_t
-chdirroot(void);
 
 /**
  * @brief Struct for holding version information of the hypervisor
