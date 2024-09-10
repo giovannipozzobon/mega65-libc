@@ -714,7 +714,8 @@ unsigned char cinput(
     }
 
     while (1) {
-        cputsxy(sx, sy, buffer);
+        if (strlen(buffer) != 0)  
+            cputsxy(sx, sy, buffer);
         blink(1);
         cputc(224);
         blink(0);
