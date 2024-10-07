@@ -316,7 +316,7 @@ void fastcall sethotregs(unsigned char f);
  */
 void fastcall setextendedattrib(unsigned char f);
 
-/* \m65libsummary{togglecase}{Set lower case character set}
+/* \m65libsummary{setlowercase}{Set lower case character set}
     \m65libsyntax    {void setlowercase(void)}
 */
 /**
@@ -324,7 +324,7 @@ void fastcall setextendedattrib(unsigned char f);
  */
 void fastcall setlowercase(void);
 
-/* \m65libsummary{togglecase}{Set upper case character set}
+/* \m65libsummary{setuppercase}{Set upper case character set}
     \m65libsyntax    {void setuppercase(void)}
 */
 /**
