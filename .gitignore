@@ -85,3 +85,7 @@ doc/html
 doc/xml
 doc/latex
 doc/*.tex
+src/cc65/.source.txt
+src/kickc/.source.txt
+src/llvm/.source.txt
+src/calypis/.source.txt

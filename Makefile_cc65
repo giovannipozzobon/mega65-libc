@@ -5,6 +5,10 @@ TESTS_DIR := tests
 TESTS_SRCS := $(wildcard $(TESTS_DIR)/*.c)
 TESTS_PRGS := $(TESTS_SRCS:.c=.prg)
 
+define USE_LOCAL_CC65 
+1
+endef
+
 ifdef USE_LOCAL_CC65
     # use locally installed binary (requires 'cc65,ld65,etc' to be in the $PATH)
     CC65_PREFIX=
